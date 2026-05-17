@@ -6,8 +6,7 @@ public class Produto implements Entidade {
     private Double valor;
     private Integer estoque;
 
-
-    public Produto(String nome, Double valor, Integer estoque){
+    public Produto(String nome, Double valor, Integer estoque) {
         this.nome = nome;
         this.valor = valor;
         this.estoque = estoque;
@@ -21,15 +20,15 @@ public class Produto implements Entidade {
         return id;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public void setValor(Double valor){
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
@@ -37,7 +36,7 @@ public class Produto implements Entidade {
         return valor;
     }
 
-    public void setEstoque(Integer estoque){
+    public void setEstoque(Integer estoque) {
         this.estoque = estoque;
 
     }
@@ -45,8 +44,9 @@ public class Produto implements Entidade {
     public Integer getEstoque() {
         return estoque;
     }
+
     @Override
-    public String toString(){
-        return this.id+" " + this. nome + " " + this.valor + " " + this.estoque;
+    public String toString() {
+        return String.format("| %3s | %20s | %12s | %6s |", this.id, this.nome, "R$ " + this.valor, this.estoque);
     }
 }

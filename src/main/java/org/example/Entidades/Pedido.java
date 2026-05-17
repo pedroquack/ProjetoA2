@@ -14,7 +14,6 @@ public class Pedido  implements Entidade {
         this.cliente = cliente;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -56,11 +55,15 @@ public class Pedido  implements Entidade {
     }
 
     public Double getTotalPedido(){
-        return  0.0;
+        return produtos.stream().mapToDouble(Produto::getValor).sum();
     }
 
-    public Boolean addProduto(Long id){
-       return true;
+    public void addProduto(Produto produto){
+        this.produtos.add(produto);
+    }
+
+    public Boolean removeProduto(Long produtoId){
+        return this.produtos.removeIf(p -> p.getId().equals(produtoId));
     }
 
     public void aprovarPedido(){
@@ -69,5 +72,10 @@ public class Pedido  implements Entidade {
 
     public void marcarComoEntregue(){
         this.entregue=true;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("| %3s | %20s | %10s | %10s |", this.id, this.cliente.getNome(), this.aprovado ? "Sim" : "Não", this.entregue ? "Sim" : "Não");
     }
 }
