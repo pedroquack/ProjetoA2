@@ -48,6 +48,7 @@ public class ProdutoMenu extends Menu {
     private void listar() {
         System.out.println("\n--- Lista de Produtos ---");
         controller.listar();
+        pausar();
     }
 
     private void criar() {
@@ -57,6 +58,7 @@ public class ProdutoMenu extends Menu {
         Integer estoque = lerInteiro("Estoque: ");
         controller.criar(new Produto(nome, valor, estoque));
         System.out.println("Produto criado com sucesso.");
+        pausar();
     }
 
     private void exibir() {
@@ -66,6 +68,7 @@ public class ProdutoMenu extends Menu {
             return;
         }
         controller.exibir(id);
+        pausar();
     }
 
     private void editar() {
@@ -80,6 +83,7 @@ public class ProdutoMenu extends Menu {
         Integer estoque = lerInteiro("Novo estoque: ");
         controller.editar(id, new Produto(nome, valor, estoque));
         System.out.println("Produto atualizado com sucesso.");
+        pausar();
     }
 
     private void excluir() {
@@ -90,5 +94,6 @@ public class ProdutoMenu extends Menu {
         }
         controller.excluir(id);
         System.out.println("Produto excluído com sucesso.");
+        pausar();
     }
 }

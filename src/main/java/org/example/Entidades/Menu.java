@@ -73,4 +73,9 @@ public abstract class Menu {
             }
         }
     }
+
+    protected void pausar() {
+        System.out.print("\nPressione Enter para continuar...");
+        scanner.nextLine();
+    }
 }

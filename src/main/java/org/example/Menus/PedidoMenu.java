@@ -63,6 +63,7 @@ public class PedidoMenu extends Menu {
     private void listar() {
         System.out.println("\n--- Lista de Pedidos ---");
         pedidoController.listar();
+        pausar();
     }
 
     private void criar() {
@@ -102,6 +103,7 @@ public class PedidoMenu extends Menu {
 
         pedidoController.criar(pedido);
         System.out.printf("Pedido criado. Total: R$ %.2f%n", pedido.getTotalPedido());
+        pausar();
     }
 
     private void exibir() {
@@ -111,6 +113,7 @@ public class PedidoMenu extends Menu {
             return;
         }
         pedidoController.exibir(id);
+        pausar();
     }
 
     private void editarProdutos() {
@@ -169,6 +172,7 @@ public class PedidoMenu extends Menu {
         }
         pedido.aprovarPedido();
         System.out.println("Pedido aprovado com sucesso.");
+        pausar();
     }
 
     private void marcarEntregue() {
@@ -188,6 +192,7 @@ public class PedidoMenu extends Menu {
         }
         pedido.marcarComoEntregue();
         System.out.println("Pedido marcado como entregue.");
+        pausar();
     }
 
     private void excluir() {
@@ -198,5 +203,6 @@ public class PedidoMenu extends Menu {
         }
         pedidoController.excluir(id);
         System.out.println("Pedido excluído com sucesso.");
+        pausar();
     }
 }

@@ -48,6 +48,7 @@ public class ClienteMenu extends Menu {
     private void listar() {
         System.out.println("\n--- Lista de Clientes ---");
         controller.listar();
+        pausar();
     }
 
     private void criar() {
@@ -57,6 +58,7 @@ public class ClienteMenu extends Menu {
         String cnpjCpf = lerTexto("CPF / CNPJ: ");
         controller.criar(new Cliente(nome, razao, cnpjCpf));
         System.out.println("Cliente criado com sucesso.");
+        pausar();
     }
 
     private void exibir() {
@@ -66,6 +68,7 @@ public class ClienteMenu extends Menu {
             return;
         }
         controller.exibir(id);
+        pausar();
     }
 
     private void editar() {
@@ -80,6 +83,7 @@ public class ClienteMenu extends Menu {
         String cnpjCpf = lerTexto("Novo CPF / CNPJ: ");
         controller.editar(id, new Cliente(nome, razao, cnpjCpf));
         System.out.println("Cliente atualizado com sucesso.");
+        pausar();
     }
 
     private void excluir() {
@@ -90,5 +94,6 @@ public class ClienteMenu extends Menu {
         }
         controller.excluir(id);
         System.out.println("Cliente excluído com sucesso.");
+        pausar();
     }
 }
