@@ -73,14 +73,28 @@ public class ClienteMenu extends Menu {
 
     private void editar() {
         Long id = lerLong("ID do cliente a editar: ");
-        if (controller.buscar(id) == null) {
+        Cliente clienteAtual = controller.buscar(id);
+        if (clienteAtual == null) {
             System.out.println("Cliente não encontrado.");
             return;
         }
         System.out.println("Informe os novos dados (Enter para manter vazio):");
+
         String nome = lerTexto("Novo nome: ");
+        if (nome.isEmpty()) {
+            nome = clienteAtual.getNome();
+        }
+
         String razao = lerTexto("Nova razão social: ");
+        if (razao.isEmpty()) {
+            razao = clienteAtual.getRazao();
+        }
+
         String cnpjCpf = lerTexto("Novo CPF / CNPJ: ");
+        if (cnpjCpf.isEmpty()) {
+            cnpjCpf = clienteAtual.getCnpj_cpf();
+        }
+
         controller.editar(id, new Cliente(nome, razao, cnpjCpf));
         System.out.println("Cliente atualizado com sucesso.");
         pausar();
