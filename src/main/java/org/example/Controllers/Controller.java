@@ -1,0 +1,86 @@
+package org.example.Controllers;
+
+import org.example.Entidades.DuplicateIdException;
+import org.example.Entidades.Entidade;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Controller<T extends Entidade> {
+    private List<T> entidades = new ArrayList<T>();
+    private Long contador_ids = 1L;
+
+    public Boolean criar(T entidade) throws DuplicateIdException {
+        // Se o ID já foi definido manualmente, valida duplicidade
+        if (entidade.getId() != null) {
+            for (T e : entidades) {
+                if (e.getId().equals(entidade.getId())) {
+                    throw new DuplicateIdException(entidade.getId());
+                }
+            }
+        } else {
+            entidade.setId(contador_ids);
+            contador_ids++;
+        }
+        entidades.add(entidade);
+        return true;
+    }
+
+    public Boolean editar(Long id, T entidade) {
+        for (Integer i = 0; i < entidades.size(); i++) {
+            Entidade atual = entidades.get(i);
+            if (atual.getId().equals(id)) {
+                entidade.setId(atual.getId());
+                this.entidades.set(i, entidade);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public void exibir(Long id) {
+        System.out.println(getCabecalho());
+        for (Integer i = 0; i < entidades.size(); i++) {
+            Entidade atual = entidades.get(i);
+            if (atual.getId().equals(id)) {
+                System.out.println(atual.toString());
+                return;
+            }
+        }
+
+    }
+
+    public void listar() {
+        System.out.println(getCabecalho());
+        for (Integer i = 0; i < entidades.size(); i++) {
+            Entidade atual = entidades.get(i);
+            System.out.println(atual.toString());
+        }
+
+    }
+
+    public Boolean excluir(Long id) {
+        for (int i = 0; i < entidades.size(); i++) {
+            Entidade atual = entidades.get(i);
+            if (atual.getId().equals(id)) {
+                System.out.println(i);
+                entidades.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public T buscar(Long id) {
+        for (T entidade : entidades) {
+            if (entidade.getId().equals(id)) {
+                return entidade;
+            }
+        }
+        return null;
+    }
+
+    public abstract String getCabecalho();
+
+}
